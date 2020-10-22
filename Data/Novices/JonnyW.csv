@@ -1,0 +1,9 @@
+participant_name,stimulus_name,trial_direction,trial_number,max_displacement,displacement_std,tackle_success,distance_with_attacker,distance_with_attacker_std,maximum_speed,lateral_movement_percenage,time_of_wrong_movement,time_of_wrong_movement_std,time_of_right_movement,time_of_right_movement_std,corrective_movement_time,time_moving_for_tackle,time_moving_for_tackle_std
+JonnyW-Alexandre-FD1,Alex,R,5,1.976,1.847154569,0,61.04373183,6.524645989,167.4957952,0,NaN,NaN,NaN,NaN,NaN,0.653718,0.394040717
+JonnyW-Alexandre-FD2,Alex,R,5,9.676,2.907323511,0,72.17858225,12.28083281,143.9743347,0,NaN,NaN,NaN,NaN,NaN,1.6376474,0.512633647
+JonnyW-Alexandre-FG1,Alex,L,5,4.93125,1.333706458,0,158.1278554,6.51932433,146.6055104,0,NaN,NaN,NaN,NaN,NaN,0.745909,0.309378876
+JonnyW-Alexandre-FG4,Alex,L,5,10.832,3.315881482,0,71.64530323,10.971458,128.573684,0,NaN,NaN,NaN,NaN,NaN,0.8934146,0.527623723
+JonnyW-Alexandre-FG5,Alex,L,5,10.68938,8.376876029,0,85.46051069,13.53028512,130.0110556,0.2,0.930291,0,0.536384,0,0.393907,0.486098,0.260755525
+JonnyW-Jean-Emmanuel-FD3,Jean,R,5,6.8578,1.660593027,0,69.64310008,13.6840871,148.5758019,0,NaN,NaN,NaN,NaN,NaN,0.4073166,0.419870535
+JonnyW-Jean-Emmanuel-FG1,Jean,L,5,5.056666667,3.448859715,0,51.18461737,4.33412249,151.4634628,0,NaN,NaN,NaN,NaN,NaN,0.329652667,0.520994491
+JonnyW-Louis-FD1,Louis,R,5,1.499075,1.206774498,0,52.89430566,12.86569794,160.818717,0,NaN,NaN,NaN,NaN,NaN,0.30381125,0.351627649

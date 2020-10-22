@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="robots" content="noindex,nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>INCISIV | Login</title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.css" rel="stylesheet">
+  </head>
+<style>
+video#bgvid {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 120%;
+    min-height: 120%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(img/hero-bg.png) no-repeat;
+    background-size: cover;
+    display: block;
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    -ms-filter: blur(8px);
+    filter: blur(8px);
+}
+</style>
+  <body class="login">
+    <!-- <div>
+        <video playsinline autoplay muted loop poster="img/hero-bg.png" id="bgvid">
+          <source src="../../rugby3.mp4" type="video/mp4">
+          <source src="rugby3.mp4" type="video/mp4">
+          <source src="rugby3.mp4" type="video/mp4">
+      </video> -->
+
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+              <p>
+                  <img src="../../incisiv-logo.svg" width="250"  class="shadow" alt="">
+                  </p>
+            <form>
+              <h1>Dashboard Login</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Username" required/>
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" required/>
+              </div>
+              <div>
+                  <a class="btn btn-default submit" href="index1.html">Log in</a><br>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">New to site?
+                  <a href="#signup" class="to_register"> Create Account </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <!-- <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1> -->
+                  
+                  <p>
+                      <p>In partnership with</p>
+                      <img src="../../qub-mil-logo.svg" width="180"  class="shadow" alt="">
+                      </p>
+                  <p>©2018 All Rights Reserved. INCISIV - Action Intelligence&trade;. Privacy and Terms</p>
+                  
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+              <p>
+                  <img src="../../incisiv-logo.svg" width="250"  class="shadow" alt="">
+                  </p>
+            <form>
+              <h1>Create Account</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Username" required="" />
+              </div>
+              <div>
+                <input type="email" class="form-control" placeholder="Email" required="" />
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" required="" />
+              </div>
+              <div>
+                <a class="btn btn-default submit" href="index1.html">Submit</a>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Already a member ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                    <p>©2018 All Rights Reserved. INCISIV - Action Intelligence&trade;. Privacy and Terms</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+  </body>
+</html>

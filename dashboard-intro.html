@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<head>
+<meta name="robots" content="noindex,nofollow">
+</head>
+<script charset="utf-8" src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" src="http://iop.io/js/vendor/polymer/PointerEvents/pointerevents.js"></script>
+    <script type="text/javascript" src="http://iop.io/js/vendor/polymer/PointerGestures/pointergestures.js"></script>
+    <script type="text/javascript" src="http://iop.io/js/iopctrl.js"></script>
+
+
+<script src="box.js"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,500,500i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+
+    body {
+        /* font-family: Arial, Helvetica, sans-serif; */
+        font-family: 'Roboto', sans-serif;
+        /* font-family: 'Roboto Mono', monospace; */
+        color: rgb(61, 61, 61);
+        background-color: #000;
+    } 
+
+
+    .box {
+  font: 10px sans-serif;
+}
+
+.box line,
+.box rect,
+.box circle {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.box .center {
+  stroke-dasharray: 3,3;
+}
+
+.box .outlier {
+  fill: none;
+  stroke: #ccc;
+}
+
+.grey-text{
+    color: silver;
+}
+
+
+ /* css formats for the gauge */
+ .gauge .domain {
+            stroke-width: 2px;
+            stroke: rgb(0, 0, 0);
+        }
+
+        .gauge .tick line {
+            stroke: rgb(0, 0, 0);
+            stroke-width: 2px;
+        }
+        
+        .gauge line {
+            stroke: rgb(141, 141, 141);
+        }
+
+        .gauge .arc, .gauge .cursor {
+            opacity: 0;
+        }
+
+        .gauge .major {
+            fill: rgb(141, 141, 141);
+            font-size: 9px;
+            font-family: 'Play', verdana, sans-serif;
+            font-weight: normal;
+        }
+        
+        .gauge .indicator {
+            stroke: #EE3311;
+            fill: #000;
+            stroke-width: 4px;
+        }
+
+        /* css formats for the segment display */
+        .segdisplay .on {
+            fill: #00FFFF;
+
+        }
+
+        .segdisplay .off {
+            fill: #00FFFF;
+            opacity: 0.15;
+        }
+
+.title-pg{
+    text-align: right;
+    color: silver;
+}
+.heading{
+    color: grey;
+}
+.no-top-border{
+    border-top: none !important;
+}
+.with-box{
+    border-radius: 4px;
+    background: #f1f1f1;
+    background-color: #f1f1f1;
+    padding: 1em;
+}
+.bg-title{
+    font-weight: 700;
+}
+.time-txt{
+    color: #ff0d87;
+}
+.hero-content{
+    /* background: rgba(0, 0, 0, 0.6); */
+    display: table-cell;
+    margin: 0;
+    padding: 0 10px;
+    text-align: center;
+    vertical-align: middle;
+    /* font-family: 'Roboto Mono', monospace; */
+}
+.hero{
+    display: table;
+    width: 100%;
+    height: 100vh;
+}
+.hero-title{
+    font-size: 20px;
+    /* font-weight: 300; */
+    color: #fff;
+    padding-bottom: 1em;
+    /* text-align: left; */
+    /* padding: 15px; */
+}
+.sh-col{
+    /* background-image: url("Brand Logos_sansTM.jpg"); */
+    background-size: cover;
+    background-position: 50% 50%;
+    padding: 0px 15px 0px 15px;
+    margin: 0px 0px 0px 0px;
+}
+video#bgvid {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 120%;
+    min-height: 120%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(img/hero-bg.png) no-repeat;
+    background-size: cover;
+    display: block;
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    -ms-filter: blur(8px);
+    filter: blur(8px);
+}
+.hero-bott{
+    position:absolute;
+    top:100vh;
+    transform:translateY(-140%);
+    width:100%;
+    color: #fff;
+}
+
+.btn-get-started {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 3px;
+    display: inline-block;
+    padding: 8px 28px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin: 10px;
+    border: 2px solid #fff;
+    color: #fff;
+}
+.btn-get-started:hover {
+  background: #ef2f60;
+  border: 2px solid #ef2f60;
+  text-decoration: none;
+  color: #fff;
+  letter-spacing: 5px;
+}
+a {
+    /* color: #007bff; */
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+a, a:hover, a:active, a:visited, a:focus {
+    text-decoration:none;
+    color: #fff;
+}
+
+.shadow {
+    /* Use -webkit- only if supporting: Chrome < 54, iOS < 9.3, Android < 4.4.4 */
+    -webkit-filter: drop-shadow( 3px 2px 2px #0000008c ); 
+            filter: drop-shadow( 3px 2px 2px #0000008c );
+}
+
+.bgvid {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 110%;
+    min-height: 110%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(hero-img.jpg) no-repeat;
+    background-size: cover;
+    display: block;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+</style>
+
+<body>
+
+<!-- <div style="width:100%; text-align: center;">
+        <h1>Successful Tackle</h1>
+        <div id="donut" style="text-align: center;"></div>  
+</div> -->
+<section class="hero">
+    <!-- <img src="Brand Logos_sansTM.jpg" width="300px"> -->
+    <video playsinline autoplay muted loop poster="img/hero-bg.png" id="bgvid">
+        <source src="rugby3.mp4" type="video/mp4">
+        <source src="rugby3.mp4" type="video/mp4">
+        <source src="rugby3.mp4" type="video/mp4">
+    </video>
+    <!-- <iframe class="bgvid" width="854" height="480" src="https://www.youtube.com/embed/LVdcuwP_lZ4?autoplay=1&cc_load_policy=1&loop=1&playlist=LVdcuwP_lZ4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+
+<!-- <div class="bgvid"></div> -->
+    <!-- <img src="hero-img.jpg" class="bgvid" alt=""> -->
+          <div class="hero-content">
+              <!-- <div class="col-md-12 col-xs-12 hero-title"> -->
+                  <div class="hero-title" style="font-size:30px;">Welcome to the world of Action Intelligence</div>
+              <!-- </div> -->
+              <!-- <div class="col-md-6 col-xs-6 sh-col"> -->
+                    <img src="Brand_Logo.svg" width="400"  class="shadow" alt="">
+                    <div style="margin-top: 2em;">
+                            <a href="dash/production/index1.html" class="btn-get-started">Get Started</a>
+                    </div>
+                   
+          </div>
+                          
+        
+</section>
+
+
+</body>

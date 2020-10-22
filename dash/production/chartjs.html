@@ -1,0 +1,929 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex,nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chart JS Graph Examples | Gentelella Alela! by Colorlib</title>
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.css" rel="stylesheet">
+    <script charset="utf-8" src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="http://iop.io/js/vendor/polymer/PointerEvents/pointerevents.js"></script>
+    <script type="text/javascript" src="http://iop.io/js/vendor/polymer/PointerGestures/pointergestures.js"></script>
+    <script type="text/javascript" src="http://iop.io/js/iopctrl.js"></script>
+</head>
+<style>
+
+
+    .box line,
+    .box rect,
+    .box circle {
+        fill: #fff;
+        stroke: #000;
+        stroke-width: 1.5px;
+    }
+
+    .box .center {
+        stroke-dasharray: 3,3;
+    }
+
+    .box .outlier {
+        fill: none;
+        stroke: #ccc;
+    }
+
+    .grey-text {
+        color: grey;
+        line-height: 0.5;
+    }
+
+
+    /* css formats for the gauge */
+    .gauge .domain {
+        stroke-width: 2px;
+        stroke: rgb(0, 0, 0);
+    }
+
+    .gauge .tick line {
+        stroke: rgb(0, 0, 0);
+        stroke-width: 2px;
+    }
+
+    .gauge line {
+        stroke: rgb(141, 141, 141);
+    }
+
+    .gauge .arc, .gauge .cursor {
+        opacity: 0;
+    }
+
+    .gauge .major {
+        fill: rgb(141, 141, 141);
+        font-size: 9px;
+        font-family: 'Play', verdana, sans-serif;
+        font-weight: normal;
+    }
+
+    .gauge .indicator {
+        stroke: #EE3311;
+        fill: #000;
+        stroke-width: 4px;
+    }
+
+    .gauge .low .indicator {
+        stroke: rgb(17, 150, 238);
+        /* fill: #000; */
+        stroke-width: 4px;
+    }
+
+
+    /* css formats for the segment display */
+    .segdisplay .on {
+        fill: #00FFFF;
+    }
+
+    .segdisplay .off {
+        fill: #00FFFF;
+        opacity: 0.15;
+    }
+
+    .title-pg {
+        text-align: right;
+        color: silver;
+    }
+
+    .heading {
+        color: grey;
+    }
+
+    .heading-w {
+        color: #fff;
+    }
+
+    .no-top-border {
+        border-top: none !important;
+    }
+
+    .with-box {
+        border-radius: 4px;
+        background: #f1f1f1;
+        background-color: #f1f1f1;
+        padding: 1em;
+        min-height: 100px;
+    }
+
+    .bg-title {
+        font-weight: 700;
+    }
+
+    .time-txt {
+        color: #ff0d87;
+    }
+
+    .aligned-row {
+        display: flex;
+        flex-flow: row wrap;
+        &::before
+
+    {
+        display: block;
+    }
+
+    }
+
+
+    path.slice {
+        stroke-width: 2px;
+    }
+
+    polyline {
+        opacity: .3;
+        stroke: black;
+        stroke-width: 2px;
+        fill: none;
+    }
+
+    .labelValue {
+        font-size: 60%;
+        opacity: .5;
+    }
+</style>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index1.html" class="site_title_inc" style="text-align:center;"><img src="../../Brand_Logo.svg" width="190" class="shadow" alt=""></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/user.png" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2>John</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <!-- <h3>General</h3> -->
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a><i class="fa fa-home"></i> Team Details <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="index1.html">Team Overview</a></li>
+                                        <li><a href="index2.html">Player Overview</a></li>
+                                        <!-- <li><a href="index3.html">Dashboard3</a></li> -->
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-edit"></i> Coach Tools <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <!-- <li><a href="form.html">General Form</a></li> -->
+                                        <!-- <li><a href="form_advanced.html">Advanced Components</a></li> -->
+                                        <!-- <li><a href="form_validation.html">Form Validation</a></li> -->
+                                        <li><a href="form_wizards.html">Create New Player</a></li>
+                                        <!-- <li><a href="form_upload.html">Form Upload</a></li> -->
+                                        <!-- <li><a href="form_buttons.html">Form Buttons</a></li> -->
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-male"></i> Players <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="general_elements.html">Team Details</a></li>
+                                        <!-- <li><a href="media_gallery.html">Media Gallery</a></li> -->
+                                        <!-- <li><a href="typography.html">Typography</a></li> -->
+                                        <!-- <li><a href="icons.html">Icons</a></li> -->
+                                        <!-- <li><a href="glyphicons.html">Glyphicons</a></li> -->
+                                        <!-- <li><a href="widgets.html">Widgets</a></li> -->
+                                        <!-- <li><a href="invoice.html">Invoice</a></li> -->
+                                        <!-- <li><a href="inbox.html">Inbox</a></li> -->
+                                        <li><a href="calendar.html">Team Calendar</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-bar-chart-o"></i> Analytics <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="chartjs2.html">Overview</a></li>
+                                        <!-- <li><a href="morisjs.html">Moris JS</a></li> -->
+                                        <li><a href="echarts.html">Experts</a></li>
+                                        <!-- <li><a href="other_charts.html">Other Charts</a></li> -->
+                                        <li><a href="Novices.html">Development</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/user.png" alt="">John
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="../../dashboard-intro.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                </ul>
+                            </li>
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green">6</span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="images/user.png" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>CC</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Thanks for updating the results can I book some improvement sessions?
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="images/user.png" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>IH</span>
+                                                <span class="time">2 hours ago</span>
+                                            </span>
+                                            <span class="message">
+                                                How is my progress looking.
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="images/user.png" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>IP</span>
+                                                <span class="time">4 hours ago</span>
+                                            </span>
+                                            <span class="message">
+                                                How did I score on my test yesterday?
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="images/user.png" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>RD</span>
+                                                <span class="time">6 hours ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Do you have the results of yesterdays test.
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="row">
+                    <h1 class=''>Player Details</h1>
+                    <div class="col-md-12 col-xs-12" style="font-size:15px;padding:40px;">
+                        <!-- <hr> -->
+                        <div class="col-md-6 col-xs-6 row-eq-height" style="">
+                            <table class="table table-hover table-condensed table-responsive">
+
+                                <tbody>
+                                    <tr>
+                                        <td class="no-top-border">
+                                            Name:
+                                        </td>
+                                        <td class="no-top-border">
+                                            James Stafford
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Age:
+                                        </td>
+                                        <td>
+                                            24 years
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Gender:
+                                        </td>
+                                        <td>
+                                            Male
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Date:
+                                        </td>
+                                        <td>
+                                            12-Feb-2018
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td>
+                                            Level:
+                                        </td>
+                                        <td>
+                                            5 out 10
+                                        </td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6 col-xs-6 row-eq-height" style="">
+                            <table class="table table-hover table-condensed table-responsive">
+
+                                <tbody>
+                                    <tr>
+                                        <td class="no-top-border">
+                                            Weight:
+                                        </td>
+                                        <td class="no-top-border">
+                                            70 Kg
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Height:
+                                        </td>
+                                        <td>
+                                            185 cm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Position:
+                                        </td>
+                                        <td>
+                                            Defender
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <h1 class='heading'>Result</h1>
+                        <hr>
+                        <div class="widgets" style="text-align:center;">
+
+                            <div id="chart" class="chart-container"></div>
+                            <h3>Tackle Success</h3>
+                            <br>
+                            <div class="col-md-6 col-xs-6" style="border-right: 1px solid grey;">
+                                <div><h2 class="bg-title">Left</h2></div>
+                                <hr>
+                                <div class="widget-l" style="text-align:center;">
+                                    <h5>successful tackle</h5>
+                                    <div id="chart-l" class="chart-container"></div>
+                                    <hr>
+                                    <h5>Negative movement in wrong direction (cm)</h5>
+                                    <div id="boxplot_l" class="boxplot"></div>
+                                    <hr>
+                                    <h5>Action time (ms)</h5>
+                                    <div id="time_l" class="timeplot"></div>
+                                    <hr>
+                                    <h5>Your movement speed (cm/s)</h5>
+                                    <div id="speed_l" class="speedometer"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-6" style="">
+                                <div><h2 class="bg-title">Right</h2></div>
+                                <hr>
+                                <div class="widget-r" style="text-align:center;">
+                                    <h5>successful tackle</h5>
+                                    <div id="chart-r" class="chart-container"></div>
+                                    <hr>
+                                    <h5>Negative movement in wrong direction (cm)</h5>
+                                    <div id="boxplot_l" class="boxplot"></div>
+                                    <hr>
+                                    <h5>Action time (ms)</h5>
+                                    <div id="time_l" class="timeplot"></div>
+                                    <hr>
+                                    <h5>Your movement speed (cm/s)</h5>
+                                    <div id="speed_l" class="col-md-6 col-xs-6 speedometer"></div>
+                                    <div id="speed_l" class="col-md-6 col-xs-6 speedometer"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    <!-- Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a> -->
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- footer content -->
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom_beta.js"></script>
+
+    <script>
+
+        var dataset = [
+            { name: 'IE', percent: 39.10 },
+            { name: 'Chrome', percent: 32.51 },
+            { name: 'Safari', percent: 13.68 },
+            { name: 'Firefox', percent: 8.71 },
+            { name: 'Others', percent: 6.01 }
+        ];
+
+        var dataset = [
+            { name: 'IE', percent: 60 },
+            { name: 'Chrome', percent: 40 },
+
+        ];
+
+
+        function calcPercent(percent) {
+            return [percent, 100 - percent];
+        };
+
+        var pie = d3.layout.pie()
+            .value(function (d) { return d.percent })
+            .sort(null)
+            .padAngle(.03);
+
+        var w = 250, h = 250;
+
+        var outerRadius = w / 2;
+        var innerRadius = 70;
+
+        var color = d3.scale.category10();
+
+        var arc = d3.svg.arc()
+            .outerRadius(outerRadius)
+            .innerRadius(innerRadius);
+
+        var svg = d3.select("#chart")
+            .append("svg")
+            .attr({
+                width: w,
+                height: h,
+                class: 'shadow'
+            }).append('g')
+            .attr({
+                transform: 'translate(' + w / 2 + ',' + h / 2 + ')'
+            });
+        var path = svg.selectAll('path')
+            .data(pie(dataset))
+            .enter();
+
+        path.append('path')
+            .attr({
+                d: arc,
+                fill: function (d, i) {
+                    // return getColors(d.data.name);
+                    return getColors(i)
+                }
+            });
+
+        path.append("svg:text")
+            .attr("dy", ".35em")
+            .attr("text-anchor", "middle")
+            .attr("font-size", "20")
+            .attr("fill", "#fff")
+            .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
+            .text(function (d, i) {
+                console.log(d.value)
+                return d.value + "%";
+            });
+
+
+
+
+        // For the left donut chart
+
+        var arc_r = d3.svg.arc()
+            .outerRadius(outerRadius / 2)
+            .innerRadius(innerRadius / 2);
+
+        var svg_l = d3.select("#chart-l")
+            .append("svg")
+            .attr({
+                width: w,
+                height: h,
+                class: 'shadow'
+            }).append('g')
+            .attr({
+                transform: 'translate(' + w / 2 + ',' + h / 2 + ')'
+            });
+        var path_l = svg_l.selectAll('path')
+            .data(pie(dataset))
+            .enter();
+
+        path_l.append('path')
+            .attr({
+                d: arc_r,
+                fill: function (d, i) {
+                    // return getColors(d.data.name);
+                    return getColors(i)
+                }
+            });
+
+        path_l.append("svg:text")
+            .attr("dy", ".35em")
+            .attr("text-anchor", "middle")
+            .attr("font-size", "15")
+            .attr("fill", "grey")
+            .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
+            .text(function (d, i) {
+                console.log(d.value)
+                return d.value + "%";
+            });
+
+
+        // For the right
+
+        var arc_r = d3.svg.arc()
+            .outerRadius(outerRadius / 2)
+            .innerRadius(innerRadius / 2);
+
+        var svg_l = d3.select("#chart-r")
+            .append("svg")
+            .attr({
+                width: w,
+                height: h,
+                class: 'shadow'
+            }).append('g')
+            .attr({
+                transform: 'translate(' + w / 2 + ',' + h / 2 + ')'
+            });
+        var path_l = svg_l.selectAll('path')
+            .data(pie(dataset))
+            .enter();
+
+        path_l.append('path')
+            .attr({
+                d: arc_r,
+                fill: function (d, i) {
+                    // return getColors(d.data.name);
+                    return getColors(i)
+                }
+            });
+
+        path_l.append("svg:text")
+            .attr("dy", ".35em")
+            .attr("text-anchor", "middle")
+            .attr("font-size", "15")
+            .attr("fill", "grey")
+            .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
+            .text(function (d, i) {
+                console.log(d.value)
+                if (i == 0) { return d.value + "% Hit"; }
+                else {
+                    return d.value + "% Miss";
+                }
+            });
+
+
+        function getColors(i) {
+            var colorArray = ['#5CB85C', '#b71c18'];
+            return colorArray[i];
+        }
+
+
+
+        data = {
+            day: "1",
+            max: "65",
+            median: "30",
+            min: "14",
+            number: "22",
+            q1: "20",
+            q3: "35",
+            end: "1650",
+            action_time: 683,
+            speed: 178
+
+        };
+
+        var h_b = 120,
+            w_b = 250,
+            h_s = 150,
+            w_s = 150;
+
+        var margin = {
+            'top': 10,
+            'bottom': 10,
+            'left': 35,
+            'right': 35
+        }
+
+        // var box_left = d3.selectAll("#boxplot_l").append("svg")
+        //         .attr("height", h_b)
+        //         .attr("width", w_b)
+        //         .append("g")
+        //         .attr("class", "box")
+        //         .attr("transform", "translate(" + 0 + "," + h_b/2.7 + ")")
+
+        var time_left = d3.selectAll("#time_l").append("svg")
+            .attr("height", h_b)
+            .attr("width", w_b)
+            .append("g")
+            .attr("class", "box")
+            .attr("transform", "translate(" + 0 + "," + h_b / 2.7 + ")")
+
+        var speed_left = d3.selectAll("#speed_l").append("svg")
+            .attr("height", h_s)
+            .attr("width", w_s)
+        // .append("g")
+        // .attr("class", "box")
+        // .attr("transform", "translate(" + 0 + "," + h_s/2 + ")")
+
+
+        xScale = d3.scale.linear()
+            .domain([data.min, data.max]) // 0% to 100%
+            .range([
+                margin.left,
+                w_b - margin.right
+            ]);
+
+
+        timexScale = d3.scale.linear()
+            .domain([0, data.end]) // 0% to 100%
+            .range([
+                margin.left,
+                w_b - margin.right
+            ]);
+
+        console.log(data)
+
+        //   box_left.selectAll('svg')
+        //     .data(data)
+        //     .enter()
+
+
+        //     // .each(function(d,i){
+        //     //   console.log(d)
+
+        //     //   d3.select(this)
+        //     box_left.append("line")
+        //         .attr("class", "range")
+        //         .attr("x1", xScale(data.max) )
+        //         .attr("x2", xScale(data.min) )
+        //         .attr("y1", 0)
+        //         .attr("y2", 0)
+        //         .style("stroke", "black")
+        //         // .style("stroke-width", "2px");
+
+        //       box_left.append("line")
+        //         .attr("class", "max")
+        //         .attr("x1", xScale(data.max))
+        //         .attr("x2", xScale(data.max))
+        //         .attr("y1", -10)
+        //         .attr("y2", 10)
+        //         .style("stroke", "black")
+        //         .style("stroke-width", "2px")
+
+        //     // box_left.append('text')
+        //     //     .attr("class", "txt")
+        //     //     .attr("x", xScale(data.max) )
+        //     //     .attr("y", 25)
+        //     //     .attr("text-anchor", "middle")
+        //     //     .text(data.max)
+
+        //     box_left.append('foreignObject')
+        //         .attr("class", "txt-f")
+        //         .attr("x", xScale(data.max)/1.16)
+        //         .attr("y", 15)
+        //         .attr("width", "50px")
+        //         .append('xhtml:div')
+        //         // .attr("text-anchor", "middle")
+        //         .html(data.max + "<br><span class='grey-text'>Max<span>")
+
+        //     box_left.append("line")
+        //         .attr("class", "min")
+        //         .attr("x1", xScale(data.min) )
+        //         .attr("x2", xScale(data.min) )
+        //         .attr("y1", -10)
+        //         .attr("y2", 10)
+        //         .style("stroke", "black")
+        //         .style("stroke-width", "2px");
+
+        //     // box_left.append('text')
+        //     //     .attr("class", "txt")
+        //     //     .attr("x", xScale(data.min))
+        //     //     .attr("y", 25)
+        //     //     .attr("text-anchor", "middle")
+        //     //     .text(data.min)
+
+        //     box_left.append('foreignObject')
+        //         .attr("class", "txt-f")
+        //         .attr("x", xScale(data.min)/2.2)
+        //         .attr("y", 15)
+        //         .attr("width", "30px")
+        //         .append('xhtml:div')
+        //         // .attr("text-anchor", "middle")
+        //         .html(data.min + "<br><span class='grey-text'>Min<span>")
+
+        //     //   d3.select(this)
+        //         box_left.append("rect")
+        //         .attr("class", "range")
+        //         .attr("x", xScale(data.q1))
+        //         .attr("y", -10)
+        //         .attr("height", 20)
+        //         .attr("width", xScale(data.q3) - xScale(data.q1))
+        //         .style("fill", "white")
+        //         .style("stroke", "black")
+        //         .style("stroke-width", "1px");
+
+        //     //   d3.select(this)
+        //         box_left.append("line")
+        //         .attr("x1", xScale(data.median))
+        //         .attr("x2", xScale(data.median))
+        //         .attr("y1", -10)
+        //         .attr("y2", 10)
+        //         .style("stroke", "darkgray")
+        //         .style("stroke-width", "2px");
+
+        //     // box_left.append('text')
+        //     //     .attr("class", "txt")
+        //     //     .attr("x", xScale(data.median))
+        //     //     .attr("y", 25)
+        //     //     .attr("dy", "0em")
+        //     //     .attr("text-anchor", "middle")
+        //     //     .html(data.median + "Median")
+
+        //     box_left.append('foreignObject')
+        //         .attr("class", "txt-f")
+        //         .attr("x", xScale(data.median)/1.4)
+        //         .attr("y", 15)
+        //         .attr("width", "50px")
+        //         .append('xhtml:div')
+        //         // .attr("text-anchor", "middle")
+        //         .html(data.median + "<br><span class='grey-text'>Median<span>")
+
+
+
+
+
+
+        time_left.append("rect")
+            .attr("class", "range")
+            .attr("x", timexScale(0))
+            .attr("y", -10)
+            .attr("height", 20)
+            .attr("width", timexScale(data.end) - timexScale(0))
+            .style("fill", "white")
+            .style("stroke", "black")
+            .style("stroke-width", "1px");
+
+        time_left.append("rect")
+            .attr("class", "ranger")
+            .attr("x", timexScale(0))
+            .attr("y", -10)
+            .attr("height", 20)
+            .attr("width", timexScale(data.action_time) - timexScale(0))
+            .style("fill", "#22628c")
+        // .style("stroke", "black")
+        // .style("stroke-width", "1px");
+
+        time_left.append("line")
+            .attr("x1", timexScale(data.action_time))
+            .attr("x2", timexScale(data.action_time))
+            .attr("y1", -18)
+            .attr("y2", 18)
+            .style("stroke", "#ff0d87")
+            .style("stroke-width", "2px");
+
+        time_left.append('text')
+            .attr("class", "txt")
+            .attr("x", timexScale(data.action_time) / 2)
+            .attr("y", 4)
+            .attr("fill", "#fff")
+            // .attr("dy", "0em")
+            // .attr("text-anchor", "str")
+            .text((data.action_time * 100 / data.end).toFixed(2) + " %")
+
+        time_left.append('text')
+            .attr("class", "txt")
+            .attr("x", timexScale(0))
+            .attr("y", 25)
+            .attr("dy", "0em")
+            .attr("text-anchor", "middle")
+            .html("0 (ms)")
+
+        time_left.append('text')
+            .attr("class", "txt")
+            .attr("x", timexScale(data.end) - timexScale(0))
+            .attr("y", 25)
+            // .attr("dy", "0em")
+            // .attr("text-anchor", "str")
+            .text(data.end + " (ms)")
+
+
+        time_left.append('foreignObject')
+            .attr("class", "txt-f")
+            .attr("x", timexScale(data.action_time) / 1.35)
+            .attr("y", 29)
+            .attr("width", "70px")
+            .append('xhtml:div')
+            .attr("class", "time-txt")
+            // .attr("text-anchor", "middle")
+            .html(data.action_time + " (ms)<br><span class='grey-text'>Action time<span>")
+
+
+        // })
+
+
+        var gaugeValue = data.speed;
+        var displayValue = 56789;
+        var speedometerSize = 60;
+        var minValue = 0;
+        var maxValue = 190;
+        var gauge = iopctrl.arcslider()
+            .radius(speedometerSize)
+            .events(false)
+            .indicator(iopctrl.defaultGaugeIndicator);
+        gauge.axis().orient("in")
+            .normalize(true)
+            .ticks(12)
+            .tickSubdivide(3)
+            .tickSize(10, 8, 10)
+            .tickPadding(5)
+            .scale(d3.scale.linear()
+                .domain([minValue, maxValue])
+                .range([-3 * Math.PI / 4, 3 * Math.PI / 4]));
+
+        // var segDisplay = iopctrl.segdisplay()
+        // .width(80)
+        // .digitCount(6)
+        // .negative(false)
+        // .decimals(0);
+
+        // speed_left.append("g")
+        //         .attr("class", "segdisplay")
+        //         .attr("transform", "translate(130, 200)")
+        //         .call(segDisplay);
+
+        speed_left.append("g")
+            .attr("class", "gauge")
+            .attr("transform", "translate(" + (-40) + "," + (-10) + ")")
+            .call(gauge);
+
+        // segDisplay.value(56749);
+        gauge.value(gaugeValue);
+                                // speed_left.append("g")
+                                //         .attr("class", "gauge low")
+                                //         .call(gauge);
+
+                                // gauge.value(33);
+
+
+    </script>
+</body>
+</html>
